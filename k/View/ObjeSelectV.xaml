@@ -1,0 +1,24 @@
+﻿<Window x:Class="k.ObjeSelectV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:k.View"
+        mc:Ignorable="d"
+        Title="ObjeSelectV" Height="450" Width="400">
+    <Grid>
+        <ListBox Grid.Row="1" ItemsSource="{Binding Objes}" FontSize="15" SelectedItem="{Binding ObjeSel}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock FontSize="17" Text="{Binding name}" Foreground="Black" />
+                        <TextBlock FontSize="17" Text="{Binding Tipe}" Foreground="Black" />
+                        <TextBlock FontSize="17" Text="{Binding adress}" Foreground="Black" />
+                        <TextBlock FontSize="17" Text="{Binding Path=area, StringFormat={}Площадь: {0}}" Foreground="Black" />
+                        <TextBlock FontSize="17" Text="{Binding Status}" Foreground="Black" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

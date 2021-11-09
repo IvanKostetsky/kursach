@@ -1,0 +1,9 @@
+﻿<Application x:Class="k.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:k" xmlns:local1="clr-namespace:k"
+             StartupUri="View\MainWindowV.xaml">
+    <Application.Resources>
+       <!--<local1:VisibilityConvector x:Key="VisibilityConvector" />-->
+    </Application.Resources>
+</Application>

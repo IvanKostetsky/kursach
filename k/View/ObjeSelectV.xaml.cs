@@ -1,4 +1,5 @@
-﻿
+﻿using k.Model;
+using k.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,10 @@ namespace k.View
     /// </summary>
     public partial class ObjeSelectV : Window
     {
-        public ObjeSelectV()
+        public ObjeSelectV(contract contract, DBCrud db)
         {
-           
+            InitializeComponent();
+            DataContext = new ObjeSelectVM(contract, db, this);
         }
     }
 }

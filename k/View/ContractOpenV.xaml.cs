@@ -1,4 +1,5 @@
-﻿
+﻿using k.Model;
+using k.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,10 @@ namespace k.View
     /// </summary>
     public partial class ContractOpenV : Window
     {
-        public ContractOpenV()
+        public ContractOpenV(contract contract)
         {
             InitializeComponent();
-
+            DataContext = new ContractOpenVM(contract);
         }
     }
 }

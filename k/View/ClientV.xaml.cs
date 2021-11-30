@@ -1,4 +1,5 @@
-﻿
+﻿using k.Model;
+using k.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,10 @@ namespace k.View
     /// </summary>
     public partial class ClientV : Window
     {
-        public ClientV()
+        public ClientV(client client)
         {
             InitializeComponent();
-           
+            DataContext = new ClientVM(client, this);
         }
     }
 }

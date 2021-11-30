@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:k.View"
         mc:Ignorable="d"
-        Title="ContractOpenV" Height="450" Width="800">
+            Title="ContractOpenV" Height="450" Width="800">
     <Grid>
         <ScrollViewer>
             <StackPanel  Margin="10">
@@ -43,7 +43,7 @@
                         <TextBlock FontSize="17" Text="Есть гараж" Foreground="Black" 
                                Visibility="{Binding Contract.obje.houses.garage, Converter={StaticResource VisibilityConvector}}"/>
                     </StackPanel>
-                    
+
                 </StackPanel>
                 <TextBlock Visibility="{Binding Rent, Converter={StaticResource VisibilityConvector}}" Foreground="Black"  VerticalAlignment="Center" FontSize="17"
                            Text="{Binding Contract.beginRent, StringFormat=Дата начала аренды: d/M/yyyy}"/>

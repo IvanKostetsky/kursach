@@ -1,0 +1,10 @@
+﻿[*.{cs,vb}]
+
+# IDE0017: Упростите инициализацию объекта
+dotnet_diagnostic.IDE0017.severity = warning
+
+# IDE0025: Использовать тело выражения для свойств
+dotnet_diagnostic.IDE0025.severity = warning
+
+# Default severity for analyzer diagnostics with category 'Style'
+dotnet_analyzer_diagnostic.category-Style.severity = none

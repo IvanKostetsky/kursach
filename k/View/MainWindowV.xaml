@@ -5,20 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:k.View"
         mc:Ignorable="d"
-        Title="Agenstvo" Height="450" Width="800" WindowStyle="ToolWindow" WindowStartupLocation="Manual">
+        Title="MainWindowV" Height="450" Width="800">
     <Grid>
-        <TabControl SelectionChanged="TabControl_SelectionChanged" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Foreground="#FFF70D0D">
+        <TabControl>
+            <TabItem  Header="Объекты недвижимости">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Button FontSize="15" Command="{Binding NewObje}" Width="90" Margin="5">Добавить</Button>
+                        <Button FontSize="15" Command="{Binding EditObje}" Width="90"  Margin="5,5,5,5" >Изменить</Button>
+                    </StackPanel>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Objes}" FontSize="15" SelectedItem="{Binding ObjeSel}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock FontSize="17" Text="{Binding name}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Tipe}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding adress}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Path=area, StringFormat={}Площадь: {0}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Status}" Foreground="Black" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
             <TabItem Header="Договора">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button FontSize="15" Command="{Binding NewContract}" Width="200" Margin="5" HorizontalAlignment="Center">Заключить новый договор</Button>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Button FontSize="15" Command="{Binding NewContract}" Width="200" Margin="5">Заключить новый договор</Button>
                         <Button FontSize="15" Command="{Binding   OpenContract}" Width="140" Margin="5">Подробнее</Button>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" ItemsSource="{Binding Contracts}" FontSize="15" SelectedItem="{Binding ContractSel}" AutoGenerateColumns="False" HorizontalAlignment="Left" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Contracts}" FontSize="15" SelectedItem="{Binding ContractSel}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="№ договора" Binding="{Binding contractID}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Тип договора" Binding="{Binding tipe}"></DataGridTextColumn>
@@ -31,32 +56,27 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-
             <TabItem Header="Клиенты">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25*"/>
-                        <ColumnDefinition Width="764*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
-                        <Button FontSize="15" Click="Button_Click" Command="{Binding NewClient}" Width="90" Margin="5">Добавить</Button>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Button FontSize="15" Command="{Binding NewClient}" Width="90" Margin="5">Добавить</Button>
                         <Button FontSize="15" Command="{Binding EditClient}" Width="90"  Margin="5,5,5,5" >Изменить</Button>
                     </StackPanel>
-                    <ListBox Grid.Row="1" ItemsSource="{Binding Clients}" FontSize="15" SelectedItem="{Binding ClientSel}" Grid.ColumnSpan="2" Margin="0,0,0,0.5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Clients}" FontSize="15" SelectedItem="{Binding ClientSel}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel  Margin="10">
                                     <TextBlock FontSize="20" Text="{Binding TipLica}" Foreground="Black" />
-                                    <TextBlock FontSize="17" Text="{Binding Individual.FIO}" Foreground="Black" />
-                                    <TextBlock FontSize="17" Text="{Binding Individual.birthday, StringFormat=d/M/yyyy}"  Foreground="Black" />
-                                    <TextBlock FontSize="17" Text="{Binding Individual.passport}" Foreground="Black" />
-                                    <TextBlock FontSize="17" Text="{Binding legalEntity.name}" Foreground="Black" />
-                                    <TextBlock FontSize="17" Text="{Binding legalEntity.adress}"  Foreground="Black" />
-                                    <TextBlock FontSize="17" Text="{Binding legalEntity.director}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Individual.FIO}" Visibility="{Binding Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Individual.birthday, StringFormat=d/M/yyyy}" Visibility="{Binding Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Individual.passport}" Visibility="{Binding Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding legalEntity.name}" Visibility="{Binding legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding legalEntity.adress}" Visibility="{Binding legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding legalEntity.director}" Visibility="{Binding legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -65,49 +85,20 @@
             </TabItem>
             <TabItem Header="Сотрудники">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="82*"/>
-                        <ColumnDefinition Width="707*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
                         <Button FontSize="15" Command="{Binding NewWorker}" Width="90" Margin="5">Добавить</Button>
                         <Button FontSize="15" Command="{Binding EditWorker}" Width="90"  Margin="5,5,5,5" >Изменить</Button>
                     </StackPanel>
-                    <ListBox Grid.Row="1" ItemsSource="{Binding Workers}" FontSize="15" SelectedItem="{Binding WorkerSel}" Grid.ColumnSpan="2" Margin="0,0,0,0.5" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Workers}" FontSize="15" SelectedItem="{Binding WorkerSel}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
                                     <TextBlock  FontSize="17" Text="{Binding FIO}" Foreground="Black" />
                                     <TextBlock FontSize="17" Text="{Binding post}" Foreground="Black" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </TabItem>
-            <TabItem  Header="Объекты недвижимости">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button FontSize="15" Command="{Binding NewObje}" Width="90" Margin="5" HorizontalAlignment="Center">Добавить</Button>
-                        <Button FontSize="15" Command="{Binding EditObje}" Width="90"  Margin="5,5,5,5" >Изменить</Button>
-                    </StackPanel>
-                    <ListBox Grid.Row="1" ItemsSource="{Binding Objes}" FontSize="15" SelectedItem="{Binding ObjeSel}" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock FontSize="17" Text="{Binding name}" Foreground="Black" />
-                                    <TextBlock FontSize="17" Text="{Binding Tipe}" Foreground="Black" />
-                                    <TextBlock FontSize="17" Text="{Binding adress}" Foreground="Black" />
-                                    <TextBlock FontSize="17" Text="{Binding Path=area, StringFormat={}Площадь: {0}}" Foreground="Black" />
-                                    <TextBlock FontSize="17" Text="{Binding Status}" Foreground="Black" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

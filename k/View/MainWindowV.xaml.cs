@@ -1,4 +1,4 @@
-﻿
+﻿using k.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,18 +23,7 @@ namespace k.View
         public MainWindowV()
         {
             InitializeComponent();
+            DataContext = new MainWindowVM();
         }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           ClientV obj = new ClientV();
-            obj.Show();
-        }
-
-     
     }
 }

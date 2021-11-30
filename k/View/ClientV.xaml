@@ -6,47 +6,7 @@
         xmlns:local="clr-namespace:k.View"
         mc:Ignorable="d"
         Title="ClientV" Height="450" Width="800">
-    
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <TabControl Grid.Row="0" SelectedIndex="{Binding Selectindex}">
-            <TabItem Visibility="{Binding Individual, Converter={StaticResource VisibilityConvector}}" Header="Физическое лицо">
-                <ScrollViewer>
-                    <StackPanel>
-                        <Label FontSize="17">ФИО</Label>
-                        <TextBox Foreground="Black"   VerticalAlignment="Center"  FontSize="17" Text="{Binding Client.Individual.FIO}" Height="35"></TextBox>
-                        <Label FontSize="17">Дата рождения</Label>
-                        <DatePicker DisplayDateStart="01.01.1990" Foreground="Black"  VerticalAlignment="Center" FontSize="17" SelectedDate="{Binding Client.Individual.birthday}"/>
-                        <Label FontSize="17">Паспорт</Label>
-                        <TextBox Foreground="Black"   VerticalAlignment="Center"  FontSize="17" Text="{Binding Client.Individual.passport,  UpdateSourceTrigger=PropertyChanged}" Height="35"></TextBox>
-                        <Label FontSize="17">ИНН</Label>
-                        <TextBox Foreground="Black"   VerticalAlignment="Center"  FontSize="17" Text="{Binding Client.Individual.INN,  UpdateSourceTrigger=PropertyChanged}" Height="35"></TextBox>
-                    </StackPanel>
-                </ScrollViewer>                
-            </TabItem>
-            <TabItem Visibility="{Binding legalEntity, Converter={StaticResource VisibilityConvector}}" Header="Юридическое лицо">
-                <ScrollViewer>
-                    <StackPanel>
-                        <Label FontSize="17">Название</Label>
-                        <TextBox Foreground="Black"   VerticalAlignment="Center"  FontSize="17" Text="{Binding Client.legalEntity.name}" Height="35"></TextBox>
-                        <Label FontSize="17">Адрес</Label>
-                        <TextBox Foreground="Black"  VerticalAlignment="Center" FontSize="17" Text="{Binding Client.legalEntity.adress}" Height="35"></TextBox>
-                        <Label FontSize="17">ИНН</Label>
-                        <TextBox Foreground="Black"   VerticalAlignment="Center"  FontSize="17" Text="{Binding Client.legalEntity.INN,  UpdateSourceTrigger=PropertyChanged}" Height="35"></TextBox>
-                        <Label FontSize="17">КПП</Label>
-                        <TextBox Foreground="Black"    VerticalAlignment="Center"  FontSize="17" Text="{Binding Client.legalEntity.KPP,  UpdateSourceTrigger=PropertyChanged}" Height="35"></TextBox>
-                        <Label FontSize="17">Директор</Label>
-                        <TextBox Foreground="Black"   VerticalAlignment="Center"  FontSize="17" Text="{Binding Client.legalEntity.director}" Height="35"></TextBox>
-                    </StackPanel>
-                </ScrollViewer>
-            </TabItem>
-        </TabControl>
-        <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Button FontSize="17" Margin="10" Content="Подтвердить" Command="{Binding OK}"/>
-            <Button FontSize="17" Margin="10" Content="Отмена" Command="{Binding Cansel}"/>
-        </StackPanel>
+        
     </Grid>
 </Window>

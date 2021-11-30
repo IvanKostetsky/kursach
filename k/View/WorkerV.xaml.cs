@@ -1,4 +1,5 @@
-﻿
+﻿using k.ViewModel;
+using k.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,10 @@ namespace k.View
     /// </summary>
     public partial class WorkerV : Window
     {
-       
+        public WorkerV(worker worker)
+        {
+            InitializeComponent();
+            DataContext = new WorkerVM(worker, this);
+        }
     }
 }

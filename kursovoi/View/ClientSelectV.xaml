@@ -1,0 +1,26 @@
+﻿<Window x:Class="kursovoi.View.ClientSelectV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kursovoi.View"
+        mc:Ignorable="d"
+        Title="ClientSelectV" Height="450" Width="400">
+    <Grid Background="#FF9ED48A">
+        <ListBox ItemsSource="{Binding Clients}" FontSize="15" SelectedItem="{Binding ClientSel}" Background="#FF9ED48A">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel  Margin="10">
+                        <TextBlock FontSize="20" Text="{Binding TipLica}" Foreground="Black" />
+                        <TextBlock FontSize="17" Text="{Binding Individual.FIO}" Visibility="{Binding Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                        <TextBlock FontSize="17" Text="{Binding Individual.birthday, StringFormat=d/m/yyyy}" Visibility="{Binding Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                        <TextBlock FontSize="17" Text="{Binding Individual.passport}" Visibility="{Binding Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                        <TextBlock FontSize="17" Text="{Binding legalEntity.name}" Visibility="{Binding legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                        <TextBlock FontSize="17" Text="{Binding legalEntity.adress}" Visibility="{Binding legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                        <TextBlock FontSize="17" Text="{Binding legalEntity.director}" Visibility="{Binding legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

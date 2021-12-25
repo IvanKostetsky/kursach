@@ -1,0 +1,56 @@
+﻿<Window x:Class="kursovoi.View.ContractOpenV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kursovoi.View"
+        mc:Ignorable="d"
+        Title="Просмотреть контракт" Height="450" Width="800">
+    <Grid Background="#FF9ED48A">
+        <ScrollViewer>
+            <StackPanel  Margin="10">
+                <TextBlock Margin="5"   FontSize="20"  Height="25"
+                       Text="{Binding Contract.tipecontract.Name}"/>
+                <TextBlock Margin="5"   FontSize="17"  Height="25" Text="{Binding Contract.worker.FIO}" />
+                <StackPanel Visibility="{Binding Contract.client, Converter={StaticResource VisibilityConvector}, StringFormat={}Оформил: {0}}">
+                    <TextBlock FontSize="20" Text="{Binding Contract.client.TipLica}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding Contract.client.Individual.FIO}" Visibility="{Binding Contract.client.Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding Contract.client.Individual.birthday, StringFormat=d/M/yyyy}" Visibility="{Binding Contract.client.Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding Contract.client.Individual.passport}" Visibility="{Binding Contract.client.Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding Contract.client.Individual.INN, StringFormat={}ИНН: {0}}" Visibility="{Binding Contract.client.Individual,  Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding Contract.client.legalEntity.name}" Visibility="{Binding Contract.client.legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding Contract.client.legalEntity.adress}" Visibility="{Binding Contract.client.legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding Contract.client.legalEntity.director, StringFormat={}Директор:}" Visibility="{Binding Contract.client.legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding Contract.client.legalEntity.INN, StringFormat={}ИНН}" Visibility="{Binding Contract.client.legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding Contract.client.legalEntity.KPP, StringFormat={}КПП: {0}}" Visibility="{Binding Contract.client.legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                </StackPanel>
+                <StackPanel Visibility="{Binding  Contract.obje, Converter={StaticResource VisibilityConvector}}">
+                    <TextBlock FontSize="17" Text="{Binding  Contract.obje.name}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding  Contract.obje.Tipe}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding  Contract.obje.adress, StringFormat={}Адрес:{0}}" Foreground="Black" />
+                    <TextBlock FontSize="17" Text="{Binding  Contract.obje.area, StringFormat={}Площадь: {0}}" Foreground="Black"/>
+                    <StackPanel Visibility="{Binding Contract.obje.flat, Converter={StaticResource VisibilityConvector}}">
+                        <TextBlock FontSize="17" Text="{Binding  Contract.obje.flat.floor, StringFormat={}№ Этажа: {0}}" Foreground="Black" 
+                               />
+                        <TextBlock FontSize="17" Text="В наличии есть парковочное место" Foreground="Black" 
+                               Visibility="{Binding Contract.obje.flat.parkingLot, Converter={StaticResource VisibilityConvector}}"/>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding Contract.obje.houses, Converter={StaticResource VisibilityConvector}}">
+                        <TextBlock FontSize="17" Text="{Binding  Contract.obje.houses.floors, StringFormat={}Этажей в доме: {0}}" Foreground="Black" 
+                               />
+                        <TextBlock FontSize="17" Text="{Binding  Contract.obje.houses.territorySquare, StringFormat={}Площадь територии: {0}}" Foreground="Black" 
+                               />
+                        <TextBlock FontSize="17" Text="Есть гараж" Foreground="Black" 
+                               Visibility="{Binding Contract.obje.houses.garage, Converter={StaticResource VisibilityConvector}}"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+                <TextBlock Visibility="{Binding Rent, Converter={StaticResource VisibilityConvector}}" Foreground="Black"  VerticalAlignment="Center" FontSize="17"
+                           Text="{Binding Contract.beginRent, StringFormat=Дата начала аренды: d/M/yyyy}"/>
+                <TextBlock Visibility="{Binding Rent, Converter={StaticResource VisibilityConvector}}"  Foreground="Black"  VerticalAlignment="Center" FontSize="17"
+                           Text="{Binding Contract.endRent, StringFormat=Дата окончания аренды: d/M/yyyy}"/>
+                <TextBlock FontSize="17" Text="{Binding  Contract.price, StringFormat={}Цена: {0}}" Foreground="Black" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

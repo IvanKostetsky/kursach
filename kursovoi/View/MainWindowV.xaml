@@ -1,0 +1,115 @@
+﻿<Window x:Class="kursovoi.View.MainWindowV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:kursovoi.View"
+        mc:Ignorable="d"
+        Title="Agency" Height="450" Width="800">
+    <Grid>
+        <TabControl Style="{StaticResource MaterialDesignNavigatilRailTabControl}" Background="#FF76B25F"> 
+            <TabItem Header="     Объекты &#xD;&#xA;недвижимости" Width="120" Foreground="White" >
+                <Grid Background="#FF9ED48A">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Button   Background="Black" Foreground="White"  FontSize="15" Command="{Binding NewObje}" Width="110" Margin="5" BorderBrush="Transparent">Добавить</Button>
+                        <!--<Button Background="Black" Foreground="White" FontSize="15" Command="{Binding EditObje}" Width="110"  Margin="5,5,5,5" BorderBrush="Transparent">Изменить</Button>-->
+                    </StackPanel>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Objes}" FontSize="15" SelectedItem="{Binding ObjeSel}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Line X1="10" Y1="10"
+                                        X2="300" Y2="10"
+                                        Stroke="Black"
+                                        StrokeThickness="2"/>
+                                    <TextBlock FontSize="17" Text="{Binding name, StringFormat={}Название: {0}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Tipe, StringFormat={}Тип Жилья: {0}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding adress, StringFormat={}Адрес: {0}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Path=area, StringFormat={}Площадь: {0}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Status, StringFormat={}Статус: {0}}" Foreground="Black" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Договора" Width ="120"  Foreground="White">
+                <Grid Background="#FF9ED48A">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Button Background="Black" Foreground="White"  FontSize="15" Command="{Binding NewContract}" Width="250" Margin="5" BorderBrush="Transparent">Заключить новый договор</Button>
+                        <Button Background="Black" Foreground="White"  FontSize="15" Command="{Binding   OpenContract}" Width="150" Margin="5" BorderBrush="Transparent">Подробнее</Button>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Contracts}" FontSize="15" SelectedItem="{Binding ContractSel}" AutoGenerateColumns="False" Background="#FF9ED48A">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="№ договора" Binding="{Binding contractID}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Тип договора" Binding="{Binding tipe}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата заключения" Binding="{Binding date, StringFormat=d/M/yyyy}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding price}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Сотрудник заключивший договор" Binding="{Binding worker.FIO}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Объект" Binding="{Binding obje.name}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Тип лица" Binding="{Binding client.TipLica}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Width ="120" Header="Клиенты" Foreground="White">
+                <Grid Background="#FF9ED48A">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Button Background="Black" Foreground="White" BorderBrush="Transparent" FontSize="15" Command="{Binding NewClient}" Width="110" Margin="5">Добавить</Button>
+                        <!--<Button Background="Black" Foreground="White" BorderBrush="Transparent" FontSize="15" Command="{Binding EditClient}" Width="110"  Margin="5,5,5,5" >Изменить</Button>-->
+                    </StackPanel>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Clients}" FontSize="15" SelectedItem="{Binding ClientSel}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel  Margin="10">
+                                    <TextBlock FontSize="20" Text="{Binding TipLica, StringFormat={}Тип: {0}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Individual.FIO, StringFormat={}ФИО: {0}}" Visibility="{Binding Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Individual.birthday, StringFormat=d/M/yyyy}" Visibility="{Binding Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding Individual.passport, StringFormat={}Паспортные данные: {0}}" Visibility="{Binding Individual, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding legalEntity.name, StringFormat={}Имя: {0}}" Visibility="{Binding legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding legalEntity.adress, StringFormat={}Адрес: {0}}" Visibility="{Binding legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding legalEntity.director, StringFormat={}Площадь: {0}}" Visibility="{Binding legalEntity, Converter={StaticResource VisibilityConvector}}" Foreground="Black" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Сотрудники" Width ="120" Foreground="White">
+                <Grid Background="#FF9ED48A">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Button Background="Black" Foreground="White" BorderBrush="Transparent" Content ="Добавить" FontSize="15" Command="{Binding NewWorker}" Width="110" Margin="5,5,5,3"/>
+                        <Button Background="Black" Foreground="White" BorderBrush="Transparent" FontSize="15" Command="{Binding EditWorker}" Width="110"  Margin="5,5,5,3" >Изменить</Button>
+                    </StackPanel>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Workers}" FontSize="15" SelectedItem="{Binding WorkerSel}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock  FontSize="17" Text="{Binding FIO, StringFormat={}ФИО: {0}}" Foreground="Black" />
+                                    <TextBlock FontSize="17" Text="{Binding post, StringFormat={}Дожность: {0}}" Foreground="Black" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
